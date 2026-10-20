@@ -12,7 +12,7 @@
 | iOS ビルド確認 | https://github.com/kiyotake1229/dandori-meijin/actions/workflows/ios-build.yml （初回 2026-10-20 成功: https://github.com/kiyotake1229/dandori-meijin/actions/runs/39438858818 ） |
 | 本体 | `index.html`（約300KB・4,300行。画面・段取りエンジン・SVG アイコン・ネイティブ連携まで1ファイル） |
 | ローカル確認 | http://127.0.0.1:8794/ （`思考力/.claude/launch.json` の `dandori`。このフォルダで `python3 -m http.server 8794 --bind 127.0.0.1` でもよい） |
-| 開発確認用（Claude Artifact） | https://claude.ai/artifact/7Cag9aMWazbhRpMicw3xmq （2026-10-19 公開。#0005 まで反映。#0006 以降はまだ） |
+| 開発確認用（Claude Artifact） | https://claude.ai/artifact/7Cag9aMWazbhRpMicw3xmq （2026-10-20 に最新の版で公開し直した。#0009 まで反映） |
 | 通信 | 記録や操作の内容は外に送らない。外から読むのは Google Fonts の文字だけ（読めなくても端末の文字で表示される） |
 | データ | 端末内のみ（localStorage のキー `dandori.v1`。iOS アプリでは Preferences にも同じキーで二重に保存） |
 | Bundle ID / 表示名 | `work.ltv.dandori` / 段取り名人（iPhone 専用・縦向き・iOS 14 以上） |
