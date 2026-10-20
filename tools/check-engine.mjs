@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const argv = process.argv.slice(2);
@@ -88,7 +89,9 @@ const WEEK_INVERT_MAX = 12;
 const PAINT_SHARE = 0.35;
 // 生成時間の目標（ms。Node。スマホは4〜6倍遅いと考える）。max は測り直した値（下の SLOW を参照）で見る。
 // 画面は「読み込み中」を出してから次のフレームで作るので、スマホで 0.5 秒前後までなら固まって見えない
-const PERF = { avg: 50, max: 100 };
+// 合否の線は仕様の目標（最大 300ms 以下）。100ms は目安（aim）で、超えた数と最大を表示するだけ（#0009）。
+// 100ms を合否にしていたときは、ふだんでも最大が 100ms ぎりぎりで、マシンが混んでいると 119〜214ms で FAIL していた
+const PERF = { avg: 50, max: 300, aim: 100 };
 const BAD = /undefined|NaN|null|\[object|Infinity/;
 
 /* ---------- 読み込み ---------- */
@@ -874,6 +877,8 @@ const rawTimes = [];   // 測り直す前の値（表示用。負荷で遅く出
 
 /* ---------- 本体 ---------- */
 const t0 = Date.now();
+const load0 = os.loadavg()[0];   // 始めたときのマシンの混み具合（性能の結果の読み方の参考。#0009）
+let farMs = null;   // 遠い先の日付の初回の時間（目安を超えたかの表示用）
 console.log('検査対象: ' + target);
 console.log(`練習: ★1〜3 × 台所・現場 各${COUNT}問 / 日替わり ${DAYS}日分（2026-10-19 から）\n`);
 
@@ -1028,7 +1033,9 @@ for (let i = 0; i < DAYS; i++) {
   let far2 = null;
   try { far2 = F2.dailyConfig('9999-12-31'); F2.daily('9999-12-31'); } catch (e) { far2 = null; }
   const ms2 = performance.now() - a2;
-  record('日替わり: 遠い先（9999-12-31）の dailyConfig・daily も軽い（初回 100ms 以下）', !!far2 && far2.no > 0 && ms2 <= 100, far2 ? `No.${far2.no} ${ms2.toFixed(1)}ms` : 'エラー');
+  // 合否は PERF.max（300ms。#0003 の前は8秒かかっていた）。100ms（目安）を超えたら表示だけ（#0009）
+  farMs = ms2;
+  record(`日替わり: 遠い先（9999-12-31）の dailyConfig・daily も軽い（初回 ${PERF.max}ms 以下。目安 ${PERF.aim}ms）`, !!far2 && far2.no > 0 && ms2 <= PERF.max, far2 ? `No.${far2.no} ${ms2.toFixed(1)}ms` : 'エラー');
   record('Engine.DAY1 は 2026-10-19', E.DAY1 === '2026-10-19', String(E.DAY1));
 }
 
@@ -1352,8 +1359,13 @@ for (const r of perfInfo.seeds) console.log(`  ${r.theme} ★${r.star} ${r.n}問
 if (perfInfo.cold) console.log(`  日替わり（冷えた状態＝開いた直後）${perfInfo.cold.n}日: 平均 ${f1(perfInfo.cold.avg)}ms 最大 ${f1(perfInfo.cold.max[1])}ms（${perfInfo.cold.max[0]}）`);
 console.log('献立・題材ごとの条件の通過: ' + perTpl.filter((x) => x[2] < x[3]).map((x) => `${x[0]}★${x[1]} ${x[2]}/${x[3]}`).join(', ') + (perTpl.every((x) => x[2] === x[3]) ? `全部 100%（${perTpl.length}組）` : ''));
 
+const overAim = times.filter((x) => x > PERF.aim).length;
+console.log(`マシンの混み具合: load average 始め ${load0.toFixed(1)} → 終わり ${os.loadavg()[0].toFixed(1)}（CPU ${os.cpus().length}）。かかった時間 ${((Date.now() - t0) / 1000).toFixed(0)}秒（空いていれば約30秒）。` +
+  '混んでいると生成の時間が数倍になる。性能が FAIL したら、回帰が PASS していることを見たうえで、空いているときに測り直す');
+console.log(`目安（${PERF.aim}ms）: ${overAim ? `超えた生成 ${overAim}/${times.length}問（最大 ${f1(maxAll)}ms）。マシンが混んでいないときに測り直して、続くようならエンジンを見直す` : `すべて目安以内（最大 ${f1(maxAll)}ms）`}` +
+  (farMs != null && farMs > PERF.aim ? ` / 遠い先の日付の初回 ${f1(farMs)}ms も目安を超えた` : ''));
 record(`性能: 平均${PERF.avg}ms以下`, avgAll <= PERF.avg, `平均 ${f1(avgAll)}ms`);
-record(`性能: 最大${PERF.max}ms以下`, maxAll <= PERF.max, `最大 ${f1(maxAll)}ms`);
+record(`性能: 最大${PERF.max}ms以下（仕様の目標。目安 ${PERF.aim}ms は表示だけ）`, maxAll <= PERF.max, `最大 ${f1(maxAll)}ms`);
 
 console.log('\n検査項目:');
 let anyFail = false;

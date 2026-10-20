@@ -100,7 +100,7 @@ bash docs/manager/generate_docs_json.sh
 |------|-----|
 | ローカル | http://127.0.0.1:8794/ （`思考力/.claude/launch.json` の `dandori`。このフォルダで `python3 -m http.server 8794 --bind 127.0.0.1` でもよい） |
 | 開発確認用 | https://claude.ai/artifact/7Cag9aMWazbhRpMicw3xmq |
-| 本番 | https://kiyotake1229.github.io/dandori-meijin/ （公開後） |
+| 本番 | https://kiyotake1229.github.io/dandori-meijin/ （2026-10-20 公開。サポート https://kiyotake1229.github.io/dandori-meijin/support.html ） |
 
 ### (6) 作業概要と概算費用（作業が発生する場合）
 

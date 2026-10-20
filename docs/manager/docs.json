@@ -1,8 +1,28 @@
 {
-  "next_no": 8,
-  "total": 7,
-  "generated_at": "2026-10-20T23:23:06.691089",
+  "next_no": 10,
+  "total": 9,
+  "generated_at": "2026-10-20T23:36:11.660966",
   "documents": [
+    {
+      "no": 9,
+      "date": "2026-10-20",
+      "type": "FIX",
+      "category": "ENG",
+      "title": "エンジン検査の性能の合否の線",
+      "filename": "20261020_FIX_0009_ENG_エンジン検査の性能の合否の線.md",
+      "extension": "md",
+      "summary": "`check-engine` の「性能: 最大100ms以下」と「遠い先（9999-12-31）の dailyConfig・daily も軽い（初回 100ms 以下）」は、マシンが混んでいると 100ms を超えて FAIL していた（空いていれば最大 98.8ms で、ふだんでもぎりぎり）。エンジンの問題ではなく測る環境の揺れで FAIL するので、**合否の線を仕様の目標（最大 300ms "
+    },
+    {
+      "no": 8,
+      "date": "2026-10-20",
+      "type": "DPL",
+      "category": "ALL",
+      "title": "GitHubPagesで公開とビルド確認",
+      "filename": "20261020_DPL_0008_ALL_GitHubPagesで公開とビルド確認.md",
+      "extension": "md",
+      "summary": "このフォルダを git リポジトリにして GitHub の公開リポジトリ `kiyotake1229/dandori-meijin` に push し、main ブランチのルートを GitHub Pages で公開した（清武さんの依頼）。あわせて GitHub Actions の「iOS build check」で、iOS アプリがシミュレータ向け・実機向け（署名なし）ともにビルドできることを確か"
+    },
     {
       "no": 7,
       "date": "2026-10-20",
