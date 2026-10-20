@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- 段取り名人 アプリアイコンの元データ。
+       藍の方眼紙（ダークの青焼きの色）に、付箋の色の作業の帯を3本（手・コンロ・炊飯器の色）、工程表のようにずらして並べ、
+       右に完成の線とチェックの旗。帯の頭には、置いた順の番号（カードの番号と同じ紺の丸）。アプリのロゴ（ホームの左上）と同じ形。
+       角丸は付けない（OS が付ける）。四隅まで紙面で塗り、透明な部分は無い。
+       帯・旗・目盛りは中心から半径 400 以内に収め、マスク用（安全域 = 半径 409.6）でも欠けない。
+       文字（書体）は使わない（番号は線で描く）ので、書体の無い環境でも同じ絵になる。
+       PNG の書き出し: python3 tools/make-images.py icons -->
+  <title>段取り名人</title>
+  <defs>
+    <radialGradient id="bg" cx="34%" cy="24%" r="92%">
+      <stop offset="0" stop-color="#21497F"/>
+      <stop offset=".55" stop-color="#173462"/>
+      <stop offset="1" stop-color="#0B1C3A"/>
+    </radialGradient>
+    <!-- 方眼（細い線 32px ごと、太い線 128px ごと） -->
+    <pattern id="minor" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0V32M0 32H32" fill="none" stroke="#8EC3FF" stroke-opacity=".12" stroke-width="2"/>
+    </pattern>
+    <pattern id="major" width="128" height="128" patternUnits="userSpaceOnUse">
+      <path d="M128 0V128M0 128H128" fill="none" stroke="#8EC3FF" stroke-opacity=".24" stroke-width="3"/>
+    </pattern>
+    <!-- 空き時間の斜線（工程表と同じ） -->
+    <pattern id="hatch" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <path d="M0 0V24" stroke="#8EC3FF" stroke-opacity=".34" stroke-width="6"/>
+    </pattern>
+    <!-- 付箋の影（紙から少し浮く） -->
+    <filter id="lift" x="-12%" y="-30%" width="130%" height="190%">
+      <feDropShadow dx="7" dy="14" stdDeviation="9" flood-color="#020814" flood-opacity=".55"/>
+    </filter>
+    <!-- 付箋の上の、のりの帯（少し濃い） -->
+    <linearGradient id="glue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".11"/>
+      <stop offset=".2" stop-color="#000" stop-opacity=".11"/>
+      <stop offset=".2" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+    <!-- 番号の丸（中に白い線の数字） -->
+    <g id="badge"><circle r="31" fill="#13294B"/><circle r="31" fill="none" stroke="#FFF8E0" stroke-opacity=".9" stroke-width="3.5"/></g>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect width="1024" height="1024" fill="url(#minor)"/>
+  <rect width="1024" height="1024" fill="url(#major)"/>
+
+  <!-- 空き時間（帯が始まる前の待ち） -->
+  <rect x="200" y="452" width="96" height="104" fill="url(#hatch)"/>
+  <rect x="200" y="596" width="256" height="104" fill="url(#hatch)"/>
+
+  <!-- 作業の帯（付箋）。上から 手（黄）・コンロ（朱）・炊飯器（緑） -->
+  <g filter="url(#lift)">
+    <g transform="rotate(-1.6 328 360)">
+      <rect x="200" y="304" width="256" height="112" rx="6" fill="#FFE15A"/>
+      <rect x="200" y="304" width="256" height="112" rx="6" fill="url(#glue)"/>
+    </g>
+    <g transform="rotate(1.1 456 504)">
+      <rect x="296" y="448" width="320" height="112" rx="6" fill="#FFA08A"/>
+      <rect x="296" y="448" width="320" height="112" rx="6" fill="url(#glue)"/>
+    </g>
+    <g transform="rotate(-0.9 584 648)">
+      <rect x="456" y="592" width="256" height="112" rx="6" fill="#A3E2B6"/>
+      <rect x="456" y="592" width="256" height="112" rx="6" fill="url(#glue)"/>
+    </g>
+  </g>
+
+  <!-- 置いた順の番号 -->
+  <g fill="none" stroke="#FFF8E0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(252 364) rotate(-1.6)"><use href="#badge"/><path d="M-7 -11 L3 -17 V17"/></g>
+    <g transform="translate(348 508) rotate(1.1)"><use href="#badge"/><path d="M-10 -8 C-10 -19 10 -20 10 -8 C10 1 -10 7 -10 17 H11"/></g>
+    <g transform="translate(508 652) rotate(-0.9)"><use href="#badge"/><path d="M-10 -14 C-4 -20 10 -19 9 -9 C8 -2 2 -1 -2 -1 C3 -1 11 2 10 9 C9 19 -5 20 -11 13"/></g>
+  </g>
+
+  <!-- 目盛り（工程表の時間の軸） -->
+  <g stroke="#CFE3FF" stroke-opacity=".72" stroke-linecap="round">
+    <path d="M200 760H712" stroke-width="6"/>
+    <path d="M200 760V728M328 760V736M456 760V736M584 760V736M712 760V728" stroke-width="6"/>
+    <path d="M232 760V748M264 760V748M296 760V748M360 760V748M392 760V748M424 760V748M488 760V748M520 760V748M552 760V748M616 760V748M648 760V748M680 760V748" stroke-width="4"/>
+  </g>
+
+  <!-- 完成の線とチェックの旗 -->
+  <path d="M712 262V760" stroke="#FF8C4E" stroke-width="16" stroke-linecap="round"/>
+  <g transform="translate(720 262)">
+    <rect width="96" height="72" fill="#F4F8FC"/>
+    <path d="M0 0h24v24H0zM48 0h24v24H48zM24 24h24v24H24zM72 24h24v24H72zM0 48h24v24H0zM48 48h24v24H48z" fill="#13294B"/>
+    <rect width="96" height="72" fill="none" stroke="#F4F8FC" stroke-width="5"/>
+  </g>
+</svg>

@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>サポート・プライバシーポリシー｜段取り名人</title>
+<meta name="description" content="段取り名人のサポートページです。遊び方の要点、よくある質問、通知について、プライバシーポリシー（個人情報は集めません）、お問い合わせ先。">
+<meta name="theme-color" content="#EDF2F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A2240" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://kiyotake1229.github.io/dandori-meijin/support.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="段取り名人">
+<meta property="og:title" content="サポート・プライバシーポリシー｜段取り名人">
+<meta property="og:description" content="遊び方の要点、よくある質問、プライバシーポリシー、お問い合わせ先。">
+<meta property="og:url" content="https://kiyotake1229.github.io/dandori-meijin/support.html">
+<meta property="og:image" content="https://kiyotake1229.github.io/dandori-meijin/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='3' width='58' height='58' rx='8' fill='%2313294B'/%3E%3Cpath d='M12 22h20' stroke='%23FFE15A' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M22 33h22' stroke='%23FFA08A' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M34 44h16' stroke='%23A3E2B6' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M53 12v40' stroke='%23F4F8FC' stroke-width='2.5' stroke-dasharray='4 3'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+  // 書体は表示を止めずに読む（読めなければ端末の書体のまま）。アプリ本体と同じ読み方
+  (function () {
+    try {
+      var l = document.createElement('link');
+      l.rel = 'stylesheet'; l.media = 'print';
+      l.href = 'https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@500;600&display=swap';
+      l.onload = function () { l.media = 'all'; };
+      l.onerror = function () { if (l.parentNode) l.parentNode.removeChild(l); };
+      document.head.appendChild(l);
+    } catch (e) { /* 書体が読めなくても読める */ }
+  })();
+</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@500;600&display=swap"></noscript>
+<style>
+/* アプリ（index.html）と同じトークン。ライト＝方眼紙と図面の紙、ダーク＝青焼き */
+:root{
+  --bg:#EDF2F4; --grid-a:rgba(43,98,158,.07); --grid-b:rgba(43,98,158,.14);
+  --paper:#FCFDFD; --paper-2:#F3F7F9; --paper-3:#E6EDF2;
+  --ink:#13294B; --ink-2:#3B5072; --ink-3:#5F718C;
+  --line:#2D63A6; --line-2:rgba(45,99,166,.4); --line-3:rgba(45,99,166,.17);
+  --pri:#173462; --pri-ink:#F4F8FC; --pri-2:#0E2449;
+  --red:#CF3A28; --red-wash:rgba(207,58,40,.1);
+  --ok:#1C7F52;
+  --acc:#E8651F; --acc-ink:#B2470F; --s-acc:#E3A400; --s-acc-ink:#7F5C00;
+  --hatch:rgba(45,99,166,.2);
+  --note-ink:#2A2516; --note-ink-2:#5B5338;
+  --n-hand:#FFE15A; --n-stove:#FFA08A; --n-rice:#A3E2B6; --n-oven:#FFC56E; --n-micro:#C6BCFF;
+  --n-worker:#FFE15A; --n-digger:#FFB56A; --n-truck:#9AD3FF; --n-mixer:#C6BCFF; --n-crane:#FFA3C0; --n-wait:#DAE3EB;
+  --sh-1:0 1px 0 rgba(19,41,75,.05),0 10px 20px -16px rgba(19,41,75,.5);
+  --sh-note:0 1px 1px rgba(50,40,0,.12),0 9px 12px -9px rgba(50,40,0,.45);
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",system-ui,sans-serif;
+  --f-disp:"Dela Gothic One","BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular","SF Mono",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.75,.2,1);
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+  interpolate-size:allow-keywords;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A2240; --grid-a:rgba(150,200,255,.05); --grid-b:rgba(150,200,255,.11);
+    --paper:#0F3158; --paper-2:#0C2A4C; --paper-3:#15406E;
+    --ink:#E8F2FF; --ink-2:#B5CAE5; --ink-3:#8DA6C6;
+    --line:#8EC3FF; --line-2:rgba(142,195,255,.42); --line-3:rgba(142,195,255,.15);
+    --pri:#DCEBFF; --pri-ink:#0A2240; --pri-2:#BBD7FA;
+    --red:#FF7765; --red-wash:rgba(255,119,101,.15);
+    --ok:#5FD69D;
+    --acc:#FF8C4E; --acc-ink:#FFA270; --s-acc:#FFC83D; --s-acc-ink:#FFD56A;
+    --hatch:rgba(142,195,255,.2);
+    --n-hand:#EED454; --n-stove:#F09A86; --n-rice:#93D4A7; --n-oven:#F0B865; --n-micro:#B6ACF2;
+    --n-worker:#EED454; --n-digger:#F0A964; --n-truck:#8CC6F2; --n-mixer:#B6ACF2; --n-crane:#F097B4; --n-wait:#A9BCD0;
+    --sh-1:0 1px 0 rgba(0,0,0,.18),0 12px 24px -16px rgba(0,0,0,.75);
+    --sh-note:0 1px 1px rgba(0,0,0,.3),0 10px 14px -9px rgba(0,0,0,.65);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A2240; --grid-a:rgba(150,200,255,.05); --grid-b:rgba(150,200,255,.11);
+  --paper:#0F3158; --paper-2:#0C2A4C; --paper-3:#15406E;
+  --ink:#E8F2FF; --ink-2:#B5CAE5; --ink-3:#8DA6C6;
+  --line:#8EC3FF; --line-2:rgba(142,195,255,.42); --line-3:rgba(142,195,255,.15);
+  --pri:#DCEBFF; --pri-ink:#0A2240; --pri-2:#BBD7FA;
+  --red:#FF7765; --red-wash:rgba(255,119,101,.15);
+  --ok:#5FD69D;
+  --acc:#FF8C4E; --acc-ink:#FFA270; --s-acc:#FFC83D; --s-acc-ink:#FFD56A;
+  --hatch:rgba(142,195,255,.2);
+  --n-hand:#EED454; --n-stove:#F09A86; --n-rice:#93D4A7; --n-oven:#F0B865; --n-micro:#B6ACF2;
+  --n-worker:#EED454; --n-digger:#F0A964; --n-truck:#8CC6F2; --n-mixer:#B6ACF2; --n-crane:#F097B4; --n-wait:#A9BCD0;
+  --sh-1:0 1px 0 rgba(0,0,0,.18),0 12px 24px -16px rgba(0,0,0,.75);
+  --sh-note:0 1px 1px rgba(0,0,0,.3),0 10px 14px -9px rgba(0,0,0,.65);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--bg);scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);
+  font-family:var(--f-body);font-size:15px;line-height:1.85;
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(var(--grid-b) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-b) 1px,transparent 1px),
+    linear-gradient(var(--grid-a) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-a) 1px,transparent 1px);
+  background-size:40px 40px,40px 40px,8px 8px,8px 8px;
+  background-position:-1px -1px;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  padding-top:env(safe-area-inset-top,0px);
+}
+a{color:var(--line);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2.5px solid var(--line);outline-offset:2px;border-radius:2px}
+.wrap{position:relative;max-width:600px;margin:0 auto;padding-inline:16px}
+svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+p,li,td{text-wrap:pretty;overflow-wrap:anywhere}
+h1,h2,h3,summary .t,.lead{word-break:auto-phrase;text-wrap:pretty}
+.tnum{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+/* 見出し */
+.masthead{display:grid;grid-template-columns:auto 1fr;gap:2px 16px;align-items:center;padding:22px 0 4px}
+.appicon{grid-row:span 2;width:68px;height:68px;border-radius:15px;display:block;overflow:hidden;box-shadow:3px 3px 0 var(--line-2);
+  animation:icon-in .6s var(--bounce) both .1s}
+.eyebrow{margin:0;font-size:12px;letter-spacing:.14em;color:var(--ink-3);font-weight:700}
+h1{margin:0;font-family:var(--f-disp);font-weight:400;font-size:31px;line-height:1.25;letter-spacing:.04em}
+.lead{margin:14px 0 0;color:var(--ink-2);font-size:14.5px}
+
+/* 工程表の飾り（遊び方の例題「今夜の献立」の最短の段取り。帯が置いた順に伸びる） */
+.hero{position:relative;margin:16px 0 0;padding:12px 12px 8px;background:var(--paper);border:1.6px solid var(--ink);border-radius:2px;box-shadow:var(--sh-1)}
+.hero::before{content:"";position:absolute;inset:5px;border:1px solid var(--line-3);pointer-events:none}
+.hero-cap{position:relative;display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 2px 6px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.hero-cap b{font-family:var(--f-num);font-size:22px;font-weight:600;color:var(--acc-ink);line-height:1}
+.hero-cap b small{font-family:var(--f-body);font-size:12px;color:var(--ink-2);margin-left:2px}
+.hg{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr)}
+.hg-labs{border-right:1.4px solid var(--ink)}
+.hg-lab{position:relative;display:flex;align-items:center;justify-content:center;height:32px;padding-left:4px;font-size:11px;font-weight:700;color:var(--ink-2);border-bottom:1px dashed var(--line-3)}
+.hg-lab::before{content:"";position:absolute;left:0;top:5px;bottom:5px;width:4px;border-radius:0 2px 2px 0;background:var(--lc)}
+.hg-plot{position:relative}
+.hg-row{position:relative;height:32px;border-bottom:1px dashed var(--line-3)}
+.hg-idle{position:absolute;top:4px;bottom:4px;background:repeating-linear-gradient(-45deg,var(--hatch) 0 1.4px,transparent 1.4px 5px);animation:fade-in .5s ease both 1.9s}
+.hg-bar{position:absolute;top:4px;height:24px;display:flex;align-items:center;gap:3px;padding:0 4px 0 3px;overflow:hidden;
+  background:var(--lc);color:var(--note-ink);border:1.2px solid rgba(30,25,10,.55);border-radius:2px;font-size:11px;font-weight:700;white-space:nowrap;
+  animation:bar-grow .45s var(--ease) both;animation-delay:calc(.25s + var(--k) * .22s)}
+.hg-bar .n{display:inline-grid;place-items:center;min-width:16px;height:16px;flex:none;border-radius:8px;background:rgba(30,25,10,.82);color:#FFF8E0;font-family:var(--f-num);font-size:11px;font-weight:600}
+.hg-bar.xs{justify-content:center;padding:0}
+.hg-fin{position:absolute;top:-4px;bottom:0;width:0;border-left:2px solid var(--acc);animation:fade-in .4s ease both 1.85s}
+.hg-fin::before{content:"";position:absolute;top:0;left:0;width:13px;height:9px;border:1px solid var(--ink);
+  background:conic-gradient(var(--ink) 25%,var(--paper) 0 50%,var(--ink) 0 75%,var(--paper) 0) 0 0/6.5px 4.5px}
+.hg-axis{position:relative;height:18px}
+.hg-axis span{position:absolute;top:2px;transform:translateX(-50%);font-family:var(--f-num);font-size:11px;font-weight:600;color:var(--ink-3)}
+.hg-axis span:first-child{transform:none}
+.hg-axis span:last-child{transform:translateX(-100%)}
+.hg-unit{height:18px;text-align:center;font-family:var(--f-num);font-size:11px;font-weight:600;color:var(--ink-3);padding-top:2px}
+@keyframes bar-grow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+
+/* ボタン（アプリと同じ角の立った判の形） */
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 18px;
+  border:1.6px solid var(--ink);border-radius:4px;background:var(--paper);color:var(--ink);
+  font-weight:700;font-size:15px;letter-spacing:.02em;line-height:1.3;text-decoration:none;
+  box-shadow:3px 3px 0 var(--line-2);transition:transform .14s var(--ease),box-shadow .14s var(--ease),background-color .2s;touch-action:manipulation;
+}
+.btn:hover{background:var(--paper-2);text-decoration:none}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line-2)}
+.btn-pri{background:var(--pri);color:var(--pri-ink);border-color:var(--pri);box-shadow:3px 3px 0 var(--acc)}
+.btn-pri:hover{background:var(--pri-2)}
+.btn-pri:active{box-shadow:1px 1px 0 var(--acc)}
+
+/* 目次 */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px;padding:0;list-style:none}
+.toc a{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:3px;border:1.4px dashed var(--line-2);
+  background:var(--paper);color:var(--ink-2);font-size:13px;font-weight:700;text-decoration:none;line-height:1.4;
+  transition:background-color .2s,border-color .2s,color .2s,transform .15s var(--ease)}
+.toc a:hover{border-style:solid;border-color:var(--ink);color:var(--ink);transform:translateY(-2px)}
+.toc svg.i{width:15px;height:15px;color:var(--line)}
+
+/* 図面の紙（各章） */
+.sheet{position:relative;margin-top:30px;scroll-margin-top:16px;animation:rise .5s var(--ease) both}
+.sheet:nth-of-type(2){animation-delay:.05s} .sheet:nth-of-type(3){animation-delay:.1s}
+.sheet:nth-of-type(4){animation-delay:.15s} .sheet:nth-of-type(n+5){animation-delay:.2s}
+.tab{display:inline-flex;align-items:center;gap:7px;position:relative;margin-left:14px;
+  background:var(--pri);color:var(--pri-ink);border-radius:3px 3px 0 0;
+  padding:5px 13px 4px;font-size:11.5px;font-weight:700;letter-spacing:.14em}
+.tab svg.i{width:15px;height:15px}
+.body{position:relative;background:var(--paper);border:1.6px solid var(--ink);border-radius:2px;box-shadow:var(--sh-1);padding:6px 20px 20px}
+.body::before{content:"";position:absolute;inset:5px;border:1px solid var(--line-3);pointer-events:none}
+.body>*{position:relative}
+h2{margin:14px 0 6px;font-family:var(--f-disp);font-weight:400;font-size:21px;line-height:1.4;letter-spacing:.05em}
+h3{margin:20px 0 4px;font-size:15.5px;font-weight:700;color:var(--ink);display:flex;align-items:flex-start;gap:9px;line-height:1.6}
+h3::before{content:"";flex:none;width:12px;height:12px;margin-top:.42em;border:2px solid var(--acc);border-radius:2px;transform:rotate(45deg) scale(.78)}
+p{margin:6px 0}
+.small{font-size:13px;color:var(--ink-3)}
+ul,ol{margin:6px 0;padding-left:1.4em}
+li{margin:3px 0}
+li::marker{color:var(--ink-3)}
+b{font-weight:700}
+.hl{background:linear-gradient(transparent 62%,rgba(255,225,90,.55) 62%);font-weight:700}
+:root[data-theme="dark"] .hl{background:linear-gradient(transparent 62%,rgba(238,212,84,.28) 62%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hl{background:linear-gradient(transparent 62%,rgba(238,212,84,.28) 62%)}}
+
+/* 表 */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px dashed var(--line-2);vertical-align:top}
+th{color:var(--ink-3);font-weight:700;white-space:nowrap;width:6.5em}
+.week{table-layout:fixed;text-align:center;border:1.4px solid var(--ink);background:var(--paper)}
+.week th,.week td{text-align:center;width:auto;padding:7px 2px;white-space:nowrap;border:1px solid var(--line-2);line-height:1.5}
+.week thead th{color:var(--ink-2);background:var(--paper-2)}
+.week tr>:first-child{width:4.6em;text-align:left;padding-left:8px}
+.week tbody th{color:var(--ink-3);font-weight:700}
+.week .sat{color:var(--line)} .week .sun{color:var(--red)}
+.week .k{color:var(--acc-ink);font-weight:700} .week .s{color:var(--s-acc-ink);font-weight:700}
+.week .st{font-weight:700}
+
+/* きまり（番号つき） */
+.rules{margin:8px 0 6px;padding:0;list-style:none;counter-reset:r}
+.rules li{position:relative;display:grid;grid-template-columns:28px 1fr;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line-3);font-size:14.5px;line-height:1.7}
+.rules li:last-child{border-bottom:0}
+.rules li::before{counter-increment:r;content:counter(r);display:grid;place-items:center;width:24px;height:24px;margin-top:2px;border:1.6px solid var(--ink);border-radius:50%;font-family:var(--f-num);font-weight:600;font-size:12px}
+
+/* 道具の色（付箋） */
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;margin:10px 0 4px;padding:0;list-style:none}
+.tools li{display:flex;align-items:center;gap:8px;margin:0;padding:6px 8px;border:1px solid var(--line-3);border-radius:2px;background:var(--paper-2);font-size:13.5px;font-weight:700;line-height:1.35}
+.tools .sw{display:inline-grid;place-items:center;width:28px;height:24px;flex:none;border-radius:2px;background:var(--lc);color:var(--note-ink);box-shadow:var(--sh-note)}
+.tools .sw svg.i{width:17px;height:17px}
+.tools small{display:block;font-size:11.5px;font-weight:400;color:var(--ink-3)}
+.tools li>span:last-child,.tools small{word-break:keep-all;overflow-wrap:anywhere}
+
+/* よくある質問（開閉） */
+details{border-bottom:1px dashed var(--line-2)}
+details:last-of-type{border-bottom:0}
+summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;gap:10px;padding:13px 2px;font-weight:700;font-size:15px;line-height:1.6;
+  border-radius:2px;transition:color .2s}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--line)}
+summary .q{flex:none;font-family:var(--f-disp);font-weight:400;color:var(--acc-ink);font-size:16px;line-height:1.5}
+summary .t{flex:1}
+summary svg.i{width:18px;height:18px;margin-top:3px;color:var(--ink-3);transition:transform .25s var(--ease)}
+details[open] summary svg.i{transform:rotate(180deg)}
+details::details-content{height:0;overflow:clip;transition:height .28s var(--ease),content-visibility .28s allow-discrete}
+details[open]::details-content{height:auto}
+.ans{padding:0 2px 14px 26px;color:var(--ink-2)}
+details[open] .ans{animation:fade .3s ease both}
+
+/* 連絡先 */
+.contact{display:flex;align-items:center;gap:14px;margin:12px 0 8px;padding:14px 16px;border:1.6px solid var(--ink);border-radius:3px;
+  background:var(--paper-2);color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--line-3);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.contact:hover{transform:translate(-1px,-2px);box-shadow:5px 5px 0 var(--line-3);text-decoration:none}
+.contact .ic{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--pri);color:var(--pri-ink)}
+.contact>span:nth-child(2){flex:1;min-width:0}
+.contact b{display:block;font-size:15px;word-break:keep-all;overflow-wrap:anywhere}
+.contact small{display:block;font-size:12.5px;color:var(--ink-3);word-break:break-all;font-family:var(--f-num)}
+.contact .go{margin-left:auto;color:var(--ink-3);transition:transform .2s}
+.contact:hover .go{transform:translateX(3px)}
+
+.note{display:flex;gap:10px;margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--red);background:var(--red-wash);border-radius:0 3px 3px 0;font-size:14px}
+.note svg.i{color:var(--red);margin-top:3px;width:18px;height:18px}
+
+footer{position:relative;text-align:center;color:var(--ink-3);font-size:12px;padding:30px 16px max(32px,env(safe-area-inset-bottom))}
+footer a{color:var(--ink-2)}
+
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@keyframes icon-in{0%{opacity:0;transform:scale(.6) rotate(-10deg)}70%{opacity:1;transform:scale(1.06) rotate(2deg)}100%{transform:none}}
+
+@media (max-width:370px){
+  h1{font-size:27px}
+  .appicon{width:58px;height:58px;border-radius:13px}
+  .body{padding:4px 14px 16px}
+  .ans{padding-left:22px}
+  .tools{grid-template-columns:1fr}
+  .hg{grid-template-columns:42px minmax(0,1fr)}
+  .week th,.week td{font-size:13px}
+  .week tr>:first-child{width:4.2em;padding-left:6px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3.5 4v16.5H21"/><path d="M6.5 7.5h6M9.5 11.5h7M13 15.5h6.5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/><path d="M9 7.5h6M9 11h4"/></symbol>
+    <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.6"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2H4.5z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15 4.5l4.5 4.5L9 19.5H4.5V15z"/><path d="M13 6.5l4.5 4.5"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6L18.8 12z" fill="currentColor"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 5.5h15v10h-8l-4.5 4v-4h-2.5z"/><path d="M8.5 9.5h7M8.5 12.5h4.5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5h.01"/></symbol>
+    <symbol id="r-hand" viewBox="0 0 24 24"><path d="M7.6 12.2V6a1.35 1.35 0 0 1 2.7 0v5.2"/><path d="M10.3 10.8V4.6a1.35 1.35 0 0 1 2.7 0v6.2"/><path d="M13 11V5.7a1.35 1.35 0 0 1 2.7 0v6"/><path d="M15.7 11.6V8.4a1.35 1.35 0 0 1 2.7 0v5.4c0 3.9-2.8 6.7-6.4 6.7h-.5c-2.2 0-3.8-1-5-2.7l-2.6-3.7a1.4 1.4 0 0 1 2.2-1.7l1.5 1.8"/></symbol>
+    <symbol id="r-stove" viewBox="0 0 24 24"><path d="M10 3.6c-.6.8-.6 1.6 0 2.4M14 3.6c-.6.8-.6 1.6 0 2.4"/><path d="M4.5 9h15"/><path d="M6 9v4.6a2.2 2.2 0 0 0 2.2 2.2h7.6a2.2 2.2 0 0 0 2.2-2.2V9"/><path d="M3 10.2h1.5M19.5 10.2H21"/><path d="M4.5 20.5h15"/><path d="M9 18.2v1.2M12 17.8v1.6M15 18.2v1.2"/></symbol>
+    <symbol id="r-rice" viewBox="0 0 24 24"><path d="M4.4 11.4a7.6 4.6 0 0 1 15.2 0"/><path d="M4 11.4h16V17a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M12 6.8V5.3"/><path d="M10.6 5.3h2.8"/><path d="M9.3 15.4h5.4"/></symbol>
+    <symbol id="r-oven" viewBox="0 0 24 24"><rect x="3.5" y="3.8" width="17" height="16.4" rx="2"/><path d="M3.5 8.4h17"/><rect x="6.5" y="11" width="11" height="6.2" rx="1"/><path d="M7 6.1h.01M10 6.1h.01" stroke-width="2.4"/><path d="M14 6.1h3.4"/></symbol>
+    <symbol id="r-worker" viewBox="0 0 24 24"><path d="M3.2 15.4h17.6"/><path d="M5.4 15.4V14a6.6 6.6 0 0 1 13.2 0v1.4"/><path d="M10.4 7.8v3.6M13.6 7.8v3.6"/><path d="M7.6 15.4c.4 2.8 2.2 4.7 4.4 4.7s4-1.9 4.4-4.7"/></symbol>
+    <symbol id="r-crane" viewBox="0 0 24 24"><path d="M6 21V6.5M8.6 21V6.5"/><path d="M6 9l2.6 2.6L6 14.2l2.6 2.6L6 19.4"/><path d="M2.8 6.5h18.4"/><path d="M7.3 3.2L3 6.5M7.3 3.2l13.9 3.3"/><path d="M17.6 6.5v6"/><path d="M17.6 12.5c1 0 1.6.6 1.6 1.4s-.7 1.5-1.6 1.5"/><path d="M4 21h6.6"/></symbol>
+    <symbol id="r-wait" viewBox="0 0 24 24"><path d="M6.5 3.5h11M6.5 20.5h11"/><path d="M7.5 3.5c0 4.5 4.5 5.5 4.5 8.5s-4.5 4-4.5 8.5M16.5 3.5c0 4.5-4.5 5.5-4.5 8.5s4.5 4 4.5 8.5"/><path d="M10 18.4h4"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <div class="masthead">
+      <!-- アプリのアイコン（icon.svg を小さくしたもの） -->
+      <svg class="appicon" viewBox="0 0 1024 1024" role="img" aria-label="段取り名人のアイコン">
+        <defs>
+          <radialGradient id="ic-bg" cx="34%" cy="24%" r="92%"><stop offset="0" stop-color="#21497F"/><stop offset=".55" stop-color="#173462"/><stop offset="1" stop-color="#0B1C3A"/></radialGradient>
+          <pattern id="ic-grid" width="128" height="128" patternUnits="userSpaceOnUse"><path d="M128 0V128M0 128H128" fill="none" stroke="#8EC3FF" stroke-opacity=".24" stroke-width="4"/></pattern>
+        </defs>
+        <rect width="1024" height="1024" fill="url(#ic-bg)"/>
+        <rect width="1024" height="1024" fill="url(#ic-grid)"/>
+        <rect x="200" y="304" width="256" height="112" rx="6" fill="#FFE15A" transform="rotate(-1.6 328 360)"/>
+        <rect x="296" y="448" width="320" height="112" rx="6" fill="#FFA08A" transform="rotate(1.1 456 504)"/>
+        <rect x="456" y="592" width="256" height="112" rx="6" fill="#A3E2B6" transform="rotate(-.9 584 648)"/>
+        <path d="M200 760H712" stroke="#CFE3FF" stroke-opacity=".72" stroke-width="8" stroke-linecap="round"/>
+        <path d="M712 262V760" stroke="#FF8C4E" stroke-width="18" stroke-linecap="round"/>
+        <g transform="translate(720 262)"><rect width="96" height="72" fill="#F4F8FC"/><path d="M0 0h24v24H0zM48 0h24v24H48zM24 24h24v24H24zM72 24h24v24H72zM0 48h24v24H0zM48 48h24v24H48z" fill="#13294B"/></g>
+      </svg>
+      <p class="eyebrow">サポート・プライバシーポリシー</p>
+      <h1>段取り名人</h1>
+    </div>
+    <p class="lead">毎日1問届く、日替わりの段取りパズル。料理や工事の作業を、手・コンロ・クレーンなどの空き具合を読みながら並べ、全部が終わる時刻をいちばん早くします。</p>
+
+    <!-- 例題「今夜の献立」の最短の段取り（21分）。0〜25分 -->
+    <div class="hero" role="img" aria-label="工程表の例。手・コンロ・炊飯器の3つの列に作業の帯が並び、21分で完成する">
+      <p class="hero-cap"><span>例題「今夜の献立」の最短の段取り</span><b>21<small>分</small></b></p>
+      <div class="hg" aria-hidden="true">
+        <div class="hg-labs">
+          <div class="hg-lab" style="--lc:var(--n-hand)">手</div>
+          <div class="hg-lab" style="--lc:var(--n-stove)">コンロ</div>
+          <div class="hg-lab" style="--lc:var(--n-rice)">炊飯器</div>
+          <div class="hg-unit">分</div>
+        </div>
+        <div class="hg-plot">
+          <div class="hg-row">
+            <i class="hg-idle" style="left:36%;width:36%"></i>
+            <span class="hg-bar xs" style="--k:0;left:0;width:12%;--lc:var(--n-hand)"><span class="n">1</span></span>
+            <span class="hg-bar xs" style="--k:3;left:12%;width:16%;--lc:var(--n-hand)"><span class="n">4</span></span>
+            <span class="hg-bar xs" style="--k:5;left:28%;width:8%;--lc:var(--n-hand)"><span class="n">6</span></span>
+            <span class="hg-bar xs" style="--k:6;left:72%;width:12%;--lc:var(--n-hand)"><span class="n">7</span></span>
+          </div>
+          <div class="hg-row">
+            <i class="hg-idle" style="left:20%;width:8%"></i><i class="hg-idle" style="left:68%;width:16%"></i>
+            <span class="hg-bar" style="--k:1;left:0;width:20%;--lc:var(--n-stove)"><span class="n">2</span></span>
+            <span class="hg-bar" style="--k:4;left:28%;width:40%;--lc:var(--n-stove)"><span class="n">5</span>煮物を煮る</span>
+          </div>
+          <div class="hg-row">
+            <i class="hg-idle" style="left:0;width:12%"></i><i class="hg-idle" style="left:72%;width:12%"></i>
+            <span class="hg-bar" style="--k:2;left:12%;width:60%;--lc:var(--n-rice)"><span class="n">3</span>ご飯を炊く</span>
+          </div>
+          <i class="hg-fin" style="left:84%"></i>
+          <div class="hg-axis"><span style="left:0">0</span><span style="left:20%">5</span><span style="left:40%">10</span><span style="left:60%">15</span><span style="left:80%">20</span><span style="left:100%">25</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn-pri" href="./"><svg class="i"><use href="#i-play"/></svg>ブラウザで遊ぶ</a>
+    </div>
+    <nav aria-label="このページの目次">
+      <ul class="toc">
+        <li><a href="#about"><svg class="i"><use href="#i-chart"/></svg>アプリについて</a></li>
+        <li><a href="#howto"><svg class="i"><use href="#i-book"/></svg>遊び方</a></li>
+        <li><a href="#faq"><svg class="i"><use href="#i-q"/></svg>よくある質問</a></li>
+        <li><a href="#notice"><svg class="i"><use href="#i-bell"/></svg>通知について</a></li>
+        <li><a href="#privacy"><svg class="i"><use href="#i-lock"/></svg>プライバシーポリシー</a></li>
+        <li><a href="#contact"><svg class="i"><use href="#i-chat"/></svg>お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sheet" id="about" aria-labelledby="h-about">
+      <div class="tab"><svg class="i"><use href="#i-chart"/></svg>ABOUT</div>
+      <div class="body">
+        <h2 id="h-about">アプリについて</h2>
+        <p>問題はすべてアプリの中でその場で作り、<span class="hl">前の作業の決まりを守った全部の並べ方を試して、本当の最短の完成時刻</span>を確かめてから出しています。反射神経も、料理や工事の知識もいりません。</p>
+        <table>
+          <tr><th>遊べる所</th><td>iPhone・Android・PC のブラウザ。ホーム画面に追加すると、アプリのように起動します。iOS アプリ版は準備中です</td></tr>
+          <tr><th>1回</th><td>1〜3分。今日の段取りは1日1問（全員同じ問題）、練習は何問でも</td></tr>
+          <tr><th>料金</th><td>無料。広告・課金・登録はありません</td></tr>
+          <tr><th>記録</th><td>この端末の中だけに保存します（外部に送りません）</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="sheet" id="howto" aria-labelledby="h-howto">
+      <div class="tab"><svg class="i"><use href="#i-book"/></svg>HOW TO PLAY</div>
+      <div class="body">
+        <h2 id="h-howto">遊び方の要点</h2>
+        <h3>きまり</h3>
+        <ol class="rules">
+          <li><span>作業カードを、タップした順に工程表へ置いていきます。</span></li>
+          <li><span>作業は「前の作業（〇〇の後）が終わり」「使う道具が空いた」ときに始まります。</span></li>
+          <li><span>同じ道具は一度に1つの作業だけ。後から置いた作業は、その道具の列の最後に並びます（前の空きに割り込むことはありません）。カードの「いま置くと ◯〜◯分」で、置く前に確かめられます。</span></li>
+          <li><span>コンロや職人が2つあるときは、早く空く方に入ります。前の作業の続き（温めた油で揚げるなど）は、同じ方で続けます。</span></li>
+          <li><span>「待つだけ」の作業（寝かせる・乾かす）は道具を使いません。その間にほかの作業を進められます。</span></li>
+          <li><span>全部置いたときの完成時刻が最短なら<b>★3</b>。遅れが最短の1割（四捨五入。少なくとも1分・1日）までなら<b>★2</b>。何度でもやり直せます。</span></li>
+        </ol>
+        <h3>道具（工程表の列）</h3>
+        <ul class="tools">
+          <li><span class="sw" style="--lc:var(--n-hand)"><svg class="i"><use href="#r-hand"/></svg></span><span>手<small>自分の手。<wbr>1つだけ</small></span></li>
+          <li><span class="sw" style="--lc:var(--n-stove)"><svg class="i"><use href="#r-stove"/></svg></span><span>コンロ<small>1口か2口</small></span></li>
+          <li><span class="sw" style="--lc:var(--n-rice)"><svg class="i"><use href="#r-rice"/></svg></span><span>炊飯器<small>入れたら<wbr>放っておける</small></span></li>
+          <li><span class="sw" style="--lc:var(--n-oven)"><svg class="i"><use href="#r-oven"/></svg></span><span>オーブン・<wbr>電子レンジ<small>予熱して焼く・<wbr>チンする</small></span></li>
+          <li><span class="sw" style="--lc:var(--n-worker)"><svg class="i"><use href="#r-worker"/></svg></span><span>職人<small>現場の人。<wbr>1人か2人</small></span></li>
+          <li><span class="sw" style="--lc:var(--n-crane)"><svg class="i"><use href="#r-crane"/></svg></span><span>重機<small>ショベルカー・<wbr>トラック・<wbr>生コン車・<wbr>クレーン</small></span></li>
+          <li><span class="sw" style="--lc:var(--n-wait)"><svg class="i"><use href="#r-wait"/></svg></span><span>待つだけ<small>寝かせる・<wbr>乾かす・<wbr>固める</small></span></li>
+        </ul>
+        <h3>曜日で変わる難しさと題材</h3>
+        <table class="week" id="week">
+          <thead><tr><th scope="col">曜日</th><th scope="col">月</th><th scope="col">火</th><th scope="col">水</th><th scope="col">木</th><th scope="col">金</th><th scope="col" class="sat">土</th><th scope="col" class="sun">日</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">難しさ</th><td class="st" data-wd="1" data-star="1">★1</td><td class="st" data-wd="2" data-star="1">★1</td><td class="st" data-wd="3" data-star="2">★2</td><td class="st" data-wd="4" data-star="2">★2</td><td class="st" data-wd="5" data-star="2">★2</td><td class="st" data-wd="6" data-star="3">★3</td><td class="st" data-wd="0" data-star="3">★3</td></tr>
+            <tr><th scope="row">題材</th><td class="k" data-wd="1" data-theme="kitchen">台所</td><td class="s" data-wd="2" data-theme="site">現場</td><td class="k" data-wd="3" data-theme="kitchen">台所</td><td class="s" data-wd="4" data-theme="site">現場</td><td class="k" data-wd="5" data-theme="kitchen">台所</td><td class="k" data-wd="6" data-theme="kitchen">台所</td><td class="s" data-wd="0" data-theme="site">現場</td></tr>
+          </tbody>
+        </table>
+        <p>台所の単位は「分」、現場（家の外まわり・カーポートなどの工事）の単位は「日」です。今日の段取りを<b>その日のうちに</b>完成させると「連続日数」がのびます（最短でなくてかまいません）。夜に開いた段取りは、0時を過ぎても<b>翌朝3時まで</b>に完成させれば、開いた日の分として数えます。</p>
+        <h3>予想</h3>
+        <p>並べる前に「最短は何分（何日）か」を予想できます（飛ばせます）。結果に「予想 → あなた → 最短」が並び、当たり具合が記録帳の「読みの鋭さ」に残ります。</p>
+        <h3>はじめての段取り</h3>
+        <p>初めての方のための、案内つきの3問です（各1分）。第1話でタップの仕方、第2話で待ち時間を使うこと、第3話で道具の取り合いを避けることを、順に練習します。記録には数えません。ホームの「はじめての方へ」か、アプリの「遊び方」から何度でも遊べます。</p>
+        <h3>練習</h3>
+        <p>★1〜★3、台所と現場を選んで何問でも遊べます（今日の段取りの記録とは別）。★3 は、コンロや職人が2つあったり、2つの道具を同時に使う作業があったりします。</p>
+        <p class="small">アプリの「遊び方」には、例題の工程表（上から順に置くと27分、最短の段取りは21分）もあります。</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="faq" aria-labelledby="h-faq">
+      <div class="tab"><svg class="i"><use href="#i-q"/></svg>FAQ</div>
+      <div class="body">
+        <h2 id="h-faq">よくある質問</h2>
+        <details>
+          <summary><span class="q">Q</span><span class="t">今日の段取りが、友だちと違います</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>今日の段取りは、<b>端末の日付</b>で決まります。同じ日付なら、だれでも同じ問題です。時差のある地域どうしでは、同じ時刻でも日付が違うので別の問題になります。また、アプリが新しくなった日は、問題の作り方が変わって、その日の問題が変わることがあります（それまでに完成させた記録は残ります）。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">後から置いた作業が、前の空いている時間に入りません</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>そういう決まりです。同じ道具の作業は、置いた順に列の後ろへ並びます（前に空きがあっても割り込みません）。だからこそ、<b>置く順番</b>で完成時刻が変わります。カードの「いま置くと ◯〜◯分」で、置く前にいつ始まるかを確かめられます。置き間違えたら［1つ戻す］で外せます。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">本当に最短ですか</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>どの問題も、前の作業の決まりを守った<b>全部の並べ方</b>をプログラムで試して、いちばん早い完成時刻を確かめてから出しています。結果の画面の［最短の段取りを見る］で、最短の一例を1枚ずつ再生でき、あなたの並べ方と何枚目で分かれたかも分かります。それでもおかしいと思ったら、段取りの No. と日付を添えて<a href="#contact">お知らせ</a>ください。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">★はどう決まりますか</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>結果の★は完成時刻で決まります。最短なら★3、遅れが最短の1割（四捨五入。少なくとも1分・1日）までなら★2、それより遅ければ★1です（例: 最短15分なら17分まで、最短25分なら28分までが★2）。何度でもやり直せ、記録には「何回目で最短に届いたか」が残ります。ホームや記録帳の日付の横の★は、その日の問題の難しさです。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">連続日数が途切れました</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>連続日数は、今日の段取りを<b>その日のうちに</b>完成させた日だけ数えます（最短でなくてかまいません）。その日のうちに開いた段取りは、0時を過ぎても<b>翌朝3時まで</b>に完成させれば、開いた日の分として数えます（0〜3時のあいだはホームに案内が出ます）。</p><p>前の日の段取りをあとで記録帳から完成させても数えません。1日あくと、次は1日目からです。端末の日付を手で大きく動かした場合も、1日目からになることがあります。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">前の日の段取りは遊べますか</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>「記録帳」から、No.1（2026年10月19日）から今日までの、すべての日の段取りを遊べます（連続日数には数えません）。ほかに、練習で ★1〜★3 の台所・現場の問題を何問でも遊べます。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">はじめて遊びます。何から始めればいいですか</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>ホームの「はじめての方へ」から、<b>はじめての段取り</b>（3話・各1分）を遊んでください。タップの仕方から、待ち時間を使う・道具の取り合いを避けるコツまでを、案内つきで順に練習できます。記録には数えません。案内を閉じたあとも、「遊び方」の画面から何度でも遊べます。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">記録が消えました。機種変更で引き継げますか</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>記録は、いま使っている端末のブラウザ（またはアプリ）の中にだけあります。ブラウザのサイトデータの削除、プライベートブラウズ、別のブラウザや別の端末では引き継がれません。いまは記録の書き出し・読み込みの機能はありません。</p><p>iPhone の Safari は、しばらく開かないサイトの保存データを消すことがあります。ホーム画面に追加して使うと消えにくくなります。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">音が出ません・振動しません</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>アプリの「設定」で、効果音と振動を ON にしてください。iPhone は消音モード（サイレント）のとき音が出ません。iPhone のブラウザ版は、ブラウザの仕組み上、振動しません（iOS アプリ版は、カードを置いたとき・完成したとき・最短のときに軽く震えます）。Android は端末の設定で振動が許可されている必要があります。</p></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">通信がない所でも遊べますか。ホーム画面に追加するには</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>一度開くと、アプリのファイルが端末に保存され、次からは通信がなくても開けます。通信がないときは、文字が端末の書体で表示されることがあります。</p>
+            <ul>
+              <li>iPhone（Safari）: 共有ボタン →「ホーム画面に追加」</li>
+              <li>Android（Chrome）: 右上のメニュー →「ホーム画面に追加」または「アプリをインストール」</li>
+            </ul></div>
+        </details>
+        <details>
+          <summary><span class="q">Q</span><span class="t">画面を暗い色にできますか</span><svg class="i"><use href="#i-down"/></svg></summary>
+          <div class="ans"><p>アプリの「設定」の「画面の色」で、自動（端末の設定に合わせる）・ライト・ダークを選べます。ダークは青焼きの図面の色になります。</p></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="sheet" id="notice" aria-labelledby="h-notice">
+      <div class="tab"><svg class="i"><use href="#i-bell"/></svg>NOTIFICATIONS</div>
+      <div class="body">
+        <h2 id="h-notice">通知について</h2>
+        <p><b>ブラウザ版は通知を使いません。</b>通知の許可を求めることもありません。</p>
+        <p><b>iOS アプリ版</b>には「毎朝の通知」があります。アプリの「設定」で ON にしたときだけ届きます（ON にしたときに、通知の許可を求めます）。</p>
+        <ul>
+          <li><b>毎朝の通知</b>: 「今日の段取りが届きました」と、決まった時刻（初めは 7:00。設定で変えられます）に知らせます。その日の No.・題名・難しさ・台所か現場かが入ります</li>
+        </ul>
+        <p>通知は端末の中で予約するもの（ローカル通知）で、通知のために外部のサーバーと通信することはありません。アプリを開くたびに、先の4週間分を予約し直します（4週間開かないと止まります）。通知を押すと、今日の段取りが開きます。</p>
+        <p>止めるときは、アプリの設定で OFF にするか、iPhone の「設定」→「通知」→「段取り名人」で止められます。</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="privacy" aria-labelledby="h-privacy">
+      <div class="tab"><svg class="i"><use href="#i-lock"/></svg>PRIVACY POLICY</div>
+      <div class="body">
+        <h2 id="h-privacy">プライバシーポリシー</h2>
+        <p class="small">制定日：2026年10月20日</p>
+        <h3>1. 集める情報</h3>
+        <p>本アプリ「段取り名人」（ブラウザ版・iOS アプリ版）は、利用者の個人情報を集めません。登録・ログインはなく、アクセス解析・広告・トラッキングの仕組みも入れていません。開発者がサーバーで利用者のデータを受け取ることも、保存することもありません。</p>
+        <h3>2. 端末の中に保存する情報</h3>
+        <p>次の情報は、利用者の端末の中（ブラウザ版はブラウザの保存領域 localStorage、iOS アプリ版はアプリの保存領域）にだけ保存し、外部には送りません。iOS アプリ版は、記録が消えにくいように、アプリの中の2か所に同じものを保存します。</p>
+        <ul>
+          <li>今日の段取りの記録（並べ方、完成時刻、やり直した回数、最短に届いた回、予想、連続日数）</li>
+          <li>練習の途中の並べ方と、練習で完成させた数</li>
+          <li>はじめての段取りの進み具合</li>
+          <li>設定（効果音・振動・画面の色・練習の題材。iOS アプリ版は、毎朝の通知の ON/OFF と時刻）</li>
+        </ul>
+        <p>アプリの「設定」→「記録を消す」（設定は残ります）、ブラウザのサイトデータの削除、またはアプリの削除で消えます。</p>
+        <h3>3. 通信</h3>
+        <p>遊んでいる間に、記録や操作の内容を外部へ送ることはありません。</p>
+        <p>文字の表示のために、Google Fonts（Google のサーバー）から書体を読み込みます。このとき、ふつうのウェブページの読み込みと同じように、利用者の IP アドレスやブラウザの種類などが Google に届きます。記録や操作の内容は含まれません。Google の扱いは <a href="https://policies.google.com/privacy" rel="noopener">Google のプライバシーポリシー</a>をご覧ください。読み込めないときは、端末の書体で表示します。</p>
+        <p>「結果をコピー」は、結果の文面（No.・完成時刻・連続日数など、とこのアプリの URL）を端末のクリップボードに入れるだけです。どこに貼るかは利用者が決め、開発者には送られません。</p>
+        <h3>4. 第三者への提供</h3>
+        <p>個人情報を集めていないため、第三者に提供することもありません。</p>
+        <h3>5. お子さまの利用</h3>
+        <p>年齢を問わず、個人情報を集めない作りです。</p>
+        <h3>6. このポリシーの変更</h3>
+        <p>内容を変えるときは、このページでお知らせします。</p>
+        <h3>7. お問い合わせ</h3>
+        <p>このポリシーについてのご質問は、下の<a href="#contact">お問い合わせ</a>からどうぞ。</p>
+      </div>
+    </section>
+
+    <section class="sheet" id="contact" aria-labelledby="h-contact">
+      <div class="tab"><svg class="i"><use href="#i-chat"/></svg>CONTACT</div>
+      <div class="body">
+        <h2 id="h-contact">お問い合わせ</h2>
+        <p>ご質問・不具合のご連絡は、GitHub の Issues で受け付けています。</p>
+        <a class="contact" href="https://github.com/kiyotake1229/dandori-meijin/issues" rel="noopener">
+          <span class="ic"><svg class="i"><use href="#i-pen"/></svg></span>
+          <span><b>GitHub の Issues に<wbr>書く</b><small>github.com/kiyotake1229/dandori-meijin/issues</small></span>
+          <svg class="i go"><use href="#i-next"/></svg>
+        </a>
+        <p class="small">書き込むには GitHub のアカウント（無料）が必要です。</p>
+        <div class="note"><svg class="i"><use href="#i-info"/></svg><p style="margin:0">Issues に書いた内容は<b>だれでも見られます</b>。名前・メールアドレスなどの個人情報は書かないでください。</p></div>
+        <h3>不具合のご連絡に添えていただきたいこと</h3>
+        <ul>
+          <li>段取りの No. と日付（練習なら ★ の数と、台所か現場か）</li>
+          <li>起きた画面と、そのとき行った操作</li>
+          <li>端末（機種・OS の版・ブラウザ）</li>
+        </ul>
+        <table>
+          <tr><th>提供</th><td>ltv.work</td></tr>
+          <tr><th>アプリ</th><td><a href="./">https://kiyotake1229.github.io/dandori-meijin/</a></td></tr>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+<footer>© 2026 ltv.work　段取り名人　·　<a href="./">ブラウザで遊ぶ</a></footer>
+</body>
+</html>

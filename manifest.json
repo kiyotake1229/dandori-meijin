@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "段取り名人",
+  "short_name": "段取り名人",
+  "description": "毎日1問届く、日替わりの段取りパズル。料理や工事の作業を道具の空きを読みながら並べて、全部が終わる時刻を最短にしよう。",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EDF2F4",
+  "theme_color": "#EDF2F4",
+  "categories": ["games", "entertainment", "education"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>段取り名人 OGP画像の元データ</title>
+<!-- ogp.png（1200×630、リンクを貼ったときのプレビュー画像）の元データ。
+     書き出し（このフォルダの親＝アプリのフォルダで実行）:
+       python3 tools/make-images.py ogp
+     手で書き出すとき（撮り終えても Chrome が終わらない環境では、ogp.png ができたら Ctrl+C で止める）:
+       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --mute-audio --hide-scrollbars \
+         --user-data-dir="$(mktemp -d)" --window-size=1200,630 --virtual-time-budget=10000 \
+         --force-device-scale-factor=1 --force-color-profile=srgb --screenshot="$PWD/ogp.png" "file://$PWD/tools/ogp.html"
+     色はアプリのダーク（青焼きの方眼紙）とライト（図面の紙）のトークンに合わせている。
+     右の工程表は遊び方の例題（Engine.example()「今夜の献立」）の最短の段取り（21分）そのまま。
+     帯の番号は置いた順（米を研ぐ → だしを取る → ご飯を炊く → 野菜を切る → 煮物を煮る → 味噌を溶く → 盛り付け）。 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Dela+Gothic+One&family=IBM+Plex+Mono:wght@500;600&display=block">
+<style>
+  :root{
+    /* ダーク（青焼き） */
+    --bg-d:#0A2240; --ink-d:#E8F2FF; --ink-d2:#B5CAE5; --ink-d3:#8DA6C6; --line-d:#8EC3FF;
+    /* ライト（図面の紙） */
+    --paper:#FCFDFD; --paper-2:#F3F7F9; --ink:#13294B; --ink-2:#3B5072; --ink-3:#5F718C;
+    --line:#2D63A6; --line-2:rgba(45,99,166,.4); --line-3:rgba(45,99,166,.17); --hatch:rgba(45,99,166,.2);
+    --pri:#173462; --pri-ink:#F4F8FC; --acc:#E8651F; --acc-ink:#B2470F; --acc-d:#FF8C4E; --ok:#1C7F52;
+    --n-hand:#FFE15A; --n-stove:#FFA08A; --n-rice:#A3E2B6; --note-ink:#2A2516; --note-ink-2:#5B5338;
+    --f-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+    --f-disp:"Dela Gothic One","BIZ UDPGothic","Hiragino Sans",sans-serif;
+    --f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:var(--bg-d)}
+  body{position:relative;font-family:var(--f-body);color:var(--ink-d);-webkit-font-smoothing:antialiased;
+    background-color:var(--bg-d);
+    background-image:
+      radial-gradient(ellipse 900px 520px at 22% 30%,rgba(40,90,160,.45),transparent 70%),
+      linear-gradient(rgba(150,200,255,.11) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(150,200,255,.11) 1px,transparent 1px),
+      linear-gradient(rgba(150,200,255,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(150,200,255,.05) 1px,transparent 1px);
+    background-size:auto,40px 40px,40px 40px,8px 8px,8px 8px;
+    background-position:0 0,-1px -1px,-1px -1px,-1px -1px,-1px -1px}
+  #stage{position:absolute;inset:0;visibility:hidden}
+  #stage.ok{visibility:visible}
+  #ng{display:none;position:fixed;inset:0;background:#FF00FF;z-index:9}
+
+  /* 左: 題名と説明 */
+  .left{position:absolute;left:72px;top:70px;width:580px}
+  .brand{display:flex;align-items:center;gap:18px}
+  .logo{width:80px;height:80px;flex:none;filter:drop-shadow(4px 4px 0 rgba(142,195,255,.22))}
+  .eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-weight:700;font-size:20px;letter-spacing:.18em;color:var(--ink-d3)}
+  .eyebrow i{display:block;width:34px;height:3px;background:var(--acc-d)}
+  h1{margin:0;font-family:var(--f-disp);font-weight:400;font-size:84px;white-space:nowrap;line-height:1.05;letter-spacing:.04em;color:var(--ink-d);
+    text-shadow:0 4px 30px rgba(3,10,24,.55)}
+  .sub{margin:20px 0 0;font-family:var(--f-disp);font-weight:400;font-size:28px;letter-spacing:.08em;color:var(--acc-d)}
+  .tag{margin:20px 0 0;font-size:24px;line-height:1.65;color:var(--ink-d2);font-weight:400;letter-spacing:.02em}
+  .tag b{color:var(--ink-d);font-weight:700}
+  .chips{position:absolute;left:72px;top:486px;display:flex;gap:10px}
+  .chip{display:flex;align-items:center;gap:7px;font-size:17px;font-weight:700;color:var(--ink-d);letter-spacing:.04em;
+    padding:8px 16px 8px 12px;border-radius:4px;background:rgba(10,34,64,.8);border:1.5px solid rgba(142,195,255,.38)}
+  .chip svg{width:20px;height:20px;fill:none;stroke:var(--n-hand);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .url{position:absolute;left:72px;bottom:24px;font-family:var(--f-num);font-weight:500;font-size:17px;letter-spacing:.04em;color:var(--ink-d3)}
+
+  /* 右: 図面の紙（工程表） */
+  .card{position:absolute;left:652px;top:58px;width:486px;transform:rotate(1.2deg);transform-origin:50% 50%}
+  .tab{display:inline-flex;align-items:center;gap:8px;margin-left:18px;padding:7px 16px 6px;border-radius:4px 4px 0 0;
+    background:var(--pri);color:var(--pri-ink);font-weight:700;font-size:16px;letter-spacing:.12em}
+  .tab svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .sheet{position:relative;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:2px;padding:18px 20px 16px;
+    box-shadow:0 30px 60px -24px rgba(0,0,0,.85)}
+  .sheet::before{content:"";position:absolute;inset:6px;border:1px solid var(--line-3);pointer-events:none}
+  .head{position:relative;display:flex;align-items:flex-end;gap:12px}
+  .head .t{flex:1;min-width:0}
+  .meta{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink-3);letter-spacing:.04em}
+  .pill{display:inline-flex;align-items:center;gap:5px;padding:2px 10px 2px 7px;border-radius:999px;background:var(--acc);color:#1B1405;font-size:14px}
+  .pill svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .stars{display:inline-flex;gap:1px}
+  .stars svg{width:15px;height:15px}
+  .title{margin:6px 0 0;font-family:var(--f-disp);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:.03em}
+  .fin{display:flex;align-items:baseline;gap:6px}
+  .fin small{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--ink-3)}
+  .fin b{font-family:var(--f-num);font-weight:600;font-size:58px;line-height:.9;color:var(--acc-ink);letter-spacing:-.02em}
+  .fin span{font-weight:700;font-size:17px;color:var(--ink-2)}
+
+  /* 工程表（アプリの .gt と同じ作り） */
+  .gt{position:relative;margin-top:20px;display:grid;grid-template-columns:62px 1fr}
+  .labs{border-right:1.6px solid var(--ink)}
+  .strip{height:22px}
+  .lab{position:relative;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px dashed var(--line-3)}
+  .lab::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:5px;border-radius:0 2px 2px 0;background:var(--lc)}
+  .lab svg{width:21px;height:21px;fill:none;stroke:var(--ink-2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .lab span{font-size:12.5px;font-weight:700;color:var(--ink-2);letter-spacing:-.02em}
+  .plot{position:relative}
+  .rows{position:relative}
+  .row{position:relative;height:50px;border-bottom:1px dashed var(--line-3)}
+  .grid i{position:absolute;top:0;bottom:0;width:0;border-left:1px dotted var(--line-3)}
+  .grid i.mj{border-left:1px solid var(--line-2)}
+  .idle{position:absolute;top:5px;bottom:5px;background:repeating-linear-gradient(-45deg,var(--hatch) 0 1.6px,transparent 1.6px 6px);border-radius:1px}
+  .idle b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:0 5px;border-radius:2px;background:var(--paper);font-family:var(--f-num);font-size:12.5px;font-weight:600;color:var(--ink-3);white-space:nowrap}
+  .gb{position:absolute;top:7px;height:36px;display:flex;align-items:center;gap:5px;padding:0 6px 0 4px;overflow:hidden;
+    background:var(--lc);color:var(--note-ink);border:1.4px solid rgba(30,25,10,.55);border-radius:2px;box-shadow:0 2px 0 rgba(0,0,0,.08);
+    font-size:13.5px;font-weight:700;white-space:nowrap;z-index:1}
+  .gb.xs{justify-content:center;padding:0}
+  .gb .t{overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .gb .n{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 4px;flex:none;border-radius:10px;background:rgba(30,25,10,.82);color:#FFF8E0;font-family:var(--f-num);font-size:12.5px;font-weight:600}
+  .finl{position:absolute;top:-22px;bottom:0;width:0;border-left:3px solid var(--acc);z-index:4}
+  .flag{position:absolute;top:-22px;left:0;width:20px;height:13px;border:1.4px solid var(--ink);
+    background:conic-gradient(var(--ink) 25%,var(--paper) 0 50%,var(--ink) 0 75%,var(--paper) 0) 0 0/10px 6.5px}
+  .axis{position:relative;height:24px}
+  .axis span{position:absolute;top:4px;transform:translateX(-50%);font-family:var(--f-num);font-size:13px;font-weight:600;color:var(--ink-3)}
+  .axis span:first-child{transform:none}
+  .unit{height:24px;padding-top:4px;text-align:center;font-family:var(--f-num);font-size:13px;font-weight:600;color:var(--ink-3)}
+  .foot{position:relative;display:flex;align-items:center;gap:10px;margin-top:10px;padding-top:10px;border-top:1.4px dashed var(--line-2);font-size:15px;color:var(--ink-2)}
+  .foot b{font-family:var(--f-num);font-weight:600;font-size:18px;color:var(--ink)}
+  .foot .arr{color:var(--ink-3)}
+  .foot .best b{color:var(--ok)}
+
+  /* 「最短！」の判（アプリの完成の演出と同じ） */
+  .stamp{position:absolute;left:968px;top:22px;padding:8px 18px 9px;transform:rotate(-7deg);
+    background:var(--paper);border:3px solid var(--acc);color:var(--acc-ink);border-radius:3px;box-shadow:0 0 0 5px var(--paper),0 18px 30px -14px rgba(0,0,0,.7);
+    font-family:var(--f-disp);font-size:34px;letter-spacing:.12em;line-height:1.1;white-space:nowrap;text-align:center}
+  .stamp small{display:block;font-family:var(--f-body);font-weight:700;font-size:14px;letter-spacing:.06em;color:var(--ink-2)}
+
+  /* 置く前の作業カード（付箋） */
+  .note{position:absolute;width:146px;padding:13px 12px 10px;background:var(--lc);color:var(--note-ink);border-radius:2px;
+    background-image:linear-gradient(rgba(0,0,0,.065) 0 8px,transparent 8px);box-shadow:0 2px 2px rgba(0,0,0,.25),0 18px 24px -12px rgba(0,0,0,.75)}
+  .note .top{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--note-ink-2)}
+  .note .top svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .note .top b{margin-left:auto;font-family:var(--f-num);font-weight:600;font-size:14px;color:var(--note-ink)}
+  .note .top b em{font-style:normal;font-size:22px}
+  .note .nm{margin-top:3px;font-size:17px;font-weight:700}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="r-hand" viewBox="0 0 24 24"><path d="M7.6 12.2V6a1.35 1.35 0 0 1 2.7 0v5.2"/><path d="M10.3 10.8V4.6a1.35 1.35 0 0 1 2.7 0v6.2"/><path d="M13 11V5.7a1.35 1.35 0 0 1 2.7 0v6"/><path d="M15.7 11.6V8.4a1.35 1.35 0 0 1 2.7 0v5.4c0 3.9-2.8 6.7-6.4 6.7h-.5c-2.2 0-3.8-1-5-2.7l-2.6-3.7a1.4 1.4 0 0 1 2.2-1.7l1.5 1.8"/></symbol>
+    <symbol id="r-stove" viewBox="0 0 24 24"><path d="M10 3.6c-.6.8-.6 1.6 0 2.4M14 3.6c-.6.8-.6 1.6 0 2.4"/><path d="M4.5 9h15"/><path d="M6 9v4.6a2.2 2.2 0 0 0 2.2 2.2h7.6a2.2 2.2 0 0 0 2.2-2.2V9"/><path d="M3 10.2h1.5M19.5 10.2H21"/><path d="M4.5 20.5h15"/><path d="M9 18.2v1.2M12 17.8v1.6M15 18.2v1.2"/></symbol>
+    <symbol id="r-rice" viewBox="0 0 24 24"><path d="M4.4 11.4a7.6 4.6 0 0 1 15.2 0"/><path d="M4 11.4h16V17a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M12 6.8V5.3"/><path d="M10.6 5.3h2.8"/><path d="M9.3 15.4h5.4"/></symbol>
+    <symbol id="t-kitchen" viewBox="0 0 24 24"><path d="M3.5 11h12v3.4a4.6 4.6 0 0 1-4.6 4.6H8.1a4.6 4.6 0 0 1-4.6-4.6z"/><path d="M15.5 12.6h5"/><path d="M7.2 8c-.5-.9-.5-1.8 0-2.7M10.8 8c-.5-.9-.5-1.8 0-2.7"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3.5 4v16.5H21"/><path d="M6.5 7.5h6M9.5 11.5h7M13 15.5h6.5"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6.1L12 16.8l-5.4 3 1.2-6.1L3.3 9.5l6.1-.7z"/></symbol>
+  </defs>
+</svg>
+
+<div id="stage">
+  <div class="left">
+    <p class="eyebrow"><i></i>毎日1問・1〜3分の段取りパズル</p>
+    <div class="brand">
+      <!-- アプリのロゴ（ホームの左上と同じ形） -->
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="45" height="45" rx="5" fill="#DCEBFF"/>
+        <path d="M9 15.5h15" stroke="#E6C21E" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M17 24.5h17" stroke="#F07E63" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M26 33.5h11" stroke="#4FB874" stroke-width="6.5" stroke-linecap="round"/>
+        <path d="M40.5 8v32" stroke="#0A2240" stroke-width="2" stroke-dasharray="3.2 2.6" fill="none"/>
+      </svg>
+      <h1>段取り名人</h1>
+    </div>
+    <p class="sub">並べる順で、仕上がりが変わる。</p>
+    <p class="tag">料理や工事の作業を、<b>手・コンロ・クレーン</b>などの<br>空きを読みながら並べて、<b>全部が終わる時刻</b>を<br>最短にしよう。</p>
+  </div>
+  <div class="chips">
+    <span class="chip"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 9.5h16M8.5 3v4M15.5 3v4"/></svg>日替わり</span>
+    <span class="chip"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>登録なし・無料</span>
+    <span class="chip"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg>記録は端末の中</span>
+  </div>
+  <div class="url">kiyotake1229.github.io/dandori-meijin</div>
+
+  <div class="card">
+    <div class="tab"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg>工程表</div>
+    <div class="sheet">
+      <div class="head">
+        <div class="t">
+          <div class="meta"><span class="pill"><svg viewBox="0 0 24 24"><use href="#t-kitchen"/></svg>台所</span>
+            <span class="stars"><svg viewBox="0 0 24 24"><use href="#star" fill="#E8651F" stroke="#13294B" stroke-width="1.4"/></svg><svg viewBox="0 0 24 24"><use href="#star" fill="none" stroke="#5F718C" stroke-width="1.4"/></svg><svg viewBox="0 0 24 24"><use href="#star" fill="none" stroke="#5F718C" stroke-width="1.4"/></svg></span>
+            <span>例題</span></div>
+          <div class="title">今夜の献立</div>
+        </div>
+        <div class="fin"><small>完成</small><b>21</b><span>分</span></div>
+      </div>
+
+      <!-- 工程表: 0〜25分（1分 = 14.48px、欄の幅 362px） -->
+      <div class="gt">
+        <div class="labs">
+          <div class="strip"></div>
+          <div class="lab" style="--lc:var(--n-hand)"><svg viewBox="0 0 24 24"><use href="#r-hand"/></svg><span>手</span></div>
+          <div class="lab" style="--lc:var(--n-stove)"><svg viewBox="0 0 24 24"><use href="#r-stove"/></svg><span>コンロ</span></div>
+          <div class="lab" style="--lc:var(--n-rice)"><svg viewBox="0 0 24 24"><use href="#r-rice"/></svg><span>炊飯器</span></div>
+          <div class="unit">分</div>
+        </div>
+        <div class="plot">
+          <div class="strip"></div>
+          <div class="rows">
+            <div class="row">
+              <div class="idle" style="left:36%;width:36%"><b>空き9分</b></div>
+              <div class="gb xs" style="left:0;width:12%;--lc:var(--n-hand)"><span class="n">1</span></div>
+              <div class="gb xs" style="left:12%;width:16%;--lc:var(--n-hand)"><span class="n">4</span></div>
+              <div class="gb xs" style="left:28%;width:8%;--lc:var(--n-hand)"><span class="n">6</span></div>
+              <div class="gb xs" style="left:72%;width:12%;--lc:var(--n-hand)"><span class="n">7</span></div>
+            </div>
+            <div class="row">
+              <div class="idle" style="left:20%;width:8%"></div>
+              <div class="idle" style="left:68%;width:16%"></div>
+              <div class="gb" style="left:0;width:20%;--lc:var(--n-stove)"><span class="n">2</span><span class="t">だしを取る</span></div>
+              <div class="gb" style="left:28%;width:40%;--lc:var(--n-stove)"><span class="n">5</span><span class="t">煮物を煮る</span></div>
+            </div>
+            <div class="row">
+              <div class="idle" style="left:0;width:12%"></div>
+              <div class="idle" style="left:72%;width:12%"></div>
+              <div class="gb" style="left:12%;width:60%;--lc:var(--n-rice)"><span class="n">3</span><span class="t">ご飯を炊く</span></div>
+            </div>
+            <div class="grid" aria-hidden="true"><i style="left:20%"></i><i class="mj" style="left:40%"></i><i style="left:60%"></i><i class="mj" style="left:80%"></i></div>
+            <div class="finl" style="left:84%"><span class="flag"></span></div>
+          </div>
+          <div class="axis"><span style="left:0">0</span><span style="left:20%">5</span><span style="left:40%">10</span><span style="left:60%">15</span><span style="left:80%">20</span><span style="left:100%;transform:translateX(-100%)">25</span></div>
+        </div>
+      </div>
+
+      <div class="foot"><span>上から順に置くと <b>27</b>分</span><span class="arr">→</span><span class="best">段取りしだいで <b>21</b>分</span></div>
+    </div>
+  </div>
+
+  <div class="stamp">最短！<small>21分で完成</small></div>
+
+  <!-- 作業カード（付箋）。押した順に工程表へ入る -->
+  <div class="note" style="left:690px;top:482px;transform:rotate(-2.4deg);--lc:var(--n-hand)"><div class="top"><svg viewBox="0 0 24 24"><use href="#r-hand"/></svg>手<b><em>3</em>分</b></div><div class="nm">米を研ぐ</div></div>
+  <div class="note" style="left:842px;top:494px;transform:rotate(1.6deg);--lc:var(--n-stove)"><div class="top"><svg viewBox="0 0 24 24"><use href="#r-stove"/></svg>コンロ<b><em>5</em>分</b></div><div class="nm">だしを取る</div></div>
+  <div class="note" style="left:994px;top:480px;transform:rotate(-1.2deg);--lc:var(--n-rice)"><div class="top"><svg viewBox="0 0 24 24"><use href="#r-rice"/></svg>炊飯器<b><em>15</em>分</b></div><div class="nm">ご飯を炊く</div></div>
+</div>
+<div id="ng"></div>
+<script>
+  // 書体を読み終えてから見せる（読めなければ赤紫にして、書き出しの検査で止める）
+  Promise.all([
+    document.fonts.load("400 84px 'Dela Gothic One'", '段取り名人最短今夜の献立並べる順で、仕上がりが変わる。'),
+    document.fonts.load("400 25px 'BIZ UDPGothic'", '料理や工事の作業を、などの空きを読みながら並べて最短にしよう例題上から順に置くと分'),
+    document.fonts.load("700 25px 'BIZ UDPGothic'", '手・コンロ・クレーン全部が終わる時刻日替わり登録なし無料記録は端末の中毎日1問3分の段取りパズル工程表台所炊飯器米を研ぐだしを取る煮物を煮るご飯を炊く空き9分段取りしだいで21分で完成'),
+    document.fonts.load("600 58px 'IBM Plex Mono'", '0123456789'),
+    document.fonts.load("500 17px 'IBM Plex Mono'", 'kiyotake1229.github.io/dandori-meijin'),
+  ]).then(function () {
+    if (document.fonts.check("400 84px 'Dela Gothic One'", '段') && document.fonts.check("400 25px 'BIZ UDPGothic'", '料') && document.fonts.check("600 58px 'IBM Plex Mono'", '2')) {
+      document.getElementById('stage').className = 'ok';
+    } else {
+      document.getElementById('ng').style.display = 'block';
+    }
+  }, function () { document.getElementById('ng').style.display = 'block'; });
+</script>
+</body>
+</html>

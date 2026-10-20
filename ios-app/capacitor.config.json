@@ -1,0 +1,19 @@
+{
+  "appId": "work.ltv.dandori",
+  "appName": "段取り名人",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#EDF2F4",
+    "preferredContentMode": "mobile"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "iconColor": "#FF8C4E"
+    },
+    "StatusBar": {
+      "overlaysWebView": true,
+      "style": "DEFAULT"
+    }
+  }
+}
